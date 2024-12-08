@@ -3,9 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-type Props = {};
-
-export default function Ajouter({}: Props) {
+export default function Ajouter() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [auteur, setAuteur] = useState("");
@@ -19,7 +17,7 @@ export default function Ajouter({}: Props) {
       title,
       auteur,
     };
-    const res = await fetch("http://localhost:3000/blog", {
+    await fetch("http://localhost:3000/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

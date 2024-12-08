@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { articles } from "./data";
 
-export async function GET(req: Request) {
+export async function GET() {
   return NextResponse.json(articles);
 }
 export async function POST(request: Request) {

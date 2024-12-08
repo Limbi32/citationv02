@@ -17,7 +17,7 @@ export default async function page({
   return (
     <div className="bg-slate-200 m-8">
       <div className="p-8 text-center">
-        <div>"{article.title}"</div>
+        <div>{article.title}</div>
         <div className="text-right">{article.auteur}</div>
       </div>
     </div>

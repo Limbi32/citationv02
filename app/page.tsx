@@ -21,7 +21,7 @@ export default async function Home() {
               key={article.id}
               className="rounded-lg flex flex-col  bg-slate-200 shadow-lg  p-8 text-center hover:bg-slate-300"
             >
-              <p>" {article.title} " </p>
+              <p> {article.title} </p>
               <p className="text-right pr-3 text-zinc-800">{article.auteur}</p>
             </Link>
           )
