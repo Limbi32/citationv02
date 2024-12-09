@@ -1,14 +1,11 @@
 import React from "react";
 
-type Props = {
-  params: { id: number };
-};
 const getData = async (id: number) => {
   const res = await fetch("http://localhost:3000/blog/" + id);
   const data = await res.json();
   return data;
 };
-export default async function page({ params }: Props) {
+export default async function page({ params }: { params: { id: number } }) {
   const article = await getData(params.id);
   console.log(article);
 
