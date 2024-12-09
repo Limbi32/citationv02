@@ -1,18 +1,16 @@
 import React from "react";
-import { articles } from "@/app/blog/data";
 
-export default async function page({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) {
-  const article: {
-    id: number;
-    title: string;
-    auteur: string;
-  } = articles.find((article) => article.id === parseInt(params.id));
+type Props = {
+  params: { id: number };
+};
+const getData = async (id: number) => {
+  const res = await fetch("http://localhost:3000/blog/" + id);
+  const data = await res.json();
+  return data;
+};
+export default async function page({ params }: Props) {
+  const article = await getData(params.id);
+  console.log(article);
 
   return (
     <div className="bg-slate-200 m-8">

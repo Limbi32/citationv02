@@ -1,14 +1,12 @@
 import Link from "next/link";
-import { articles } from "./blog/data";
 
-// const getData = async () => {
-//   const res = await fetch("http://localhost:3000/blog");
-//   const data = res.json();
-//   return data;
-// };
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/blog");
+  const data = res.json();
+  return data;
+};
 export default async function Home() {
-  const Articles = articles;
-  console.log(Articles);
+  const Articles = await getData();
 
   return (
     <div className="w-full bg-slate-300 h-2/3 ">

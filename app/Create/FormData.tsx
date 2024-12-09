@@ -17,7 +17,7 @@ export default function Ajouter() {
       title,
       auteur,
     };
-    await fetch("http://localhost:3000/blog", {
+    await fetch("/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
