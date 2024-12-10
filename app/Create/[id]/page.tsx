@@ -1,17 +1,15 @@
 import React from "react";
 
 type Props = {
-  params: {
-    id: number;
-  };
+  params: Promise<{ id: string }>;
 };
-const getData = async (id: number) => {
+const getData = async (id: string) => {
   const res = await fetch("http://localhost:3000/blog/" + id);
   const data = await res.json();
   return data;
 };
 export default async function page({ params }: Props) {
-  const article = await getData(params.id);
+  const article = await getData((await params).id);
   console.log(article);
 
   return (
