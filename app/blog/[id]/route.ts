@@ -1,9 +1,6 @@
 import { articles } from "../data";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET({ params }: { params: { id: string } }) {
   const article = articles.find(
     (article) => article.id === parseInt(params.id)
   );
