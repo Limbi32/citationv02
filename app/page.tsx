@@ -16,7 +16,7 @@ export default async function Home() {
             <Link
               href={"/Create/" + article.id}
               key={article.id}
-              className="rounded-lg flex flex-col  bg-slate-200 shadow-lg  p-8 text-center hover:bg-slate-300"
+              className="rounded-lg flex flex-col gap-2  bg-slate-200 shadow-lg  p-8 text-center hover:bg-slate-300"
             >
               <p> {article.title} </p>
               <p className="text-right pr-3 text-zinc-800">{article.auteur}</p>
