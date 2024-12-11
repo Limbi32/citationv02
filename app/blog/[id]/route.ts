@@ -1,8 +1,23 @@
-import { articles } from "../data";
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
-export async function GET({ params }: { params: { id: string } }) {
-  const article = articles.find(
-    (article) => article.id === parseInt(params.id)
-  );
-  return Response.json(article);
+const prisma = new PrismaClient();
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const employes = await prisma.employes.findFirst({
+      where: {
+        id: parseInt((await params).id),
+      },
+    });
+    return NextResponse.json(employes, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Failde to fetch employé" },
+      { status: 500 }
+    );
+  }
 }
