@@ -8,6 +8,7 @@ const getData = async () => {
 export default async function Home() {
   const Articles = await getData();
 
+
   return (
     <div className="w-full bg-slate-300 h-2/3 ">
       <div className="flex  flex-col justify-between gap-2 p-6">
