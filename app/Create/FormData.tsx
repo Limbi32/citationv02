@@ -10,14 +10,14 @@ export default function Ajouter() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     // Préparer les données à envoyer
     const articleData = {
       id: 1,
       title,
       auteur,
     };
-    await fetch("/blog", {
+    await fetch("" + apiUrl + "/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

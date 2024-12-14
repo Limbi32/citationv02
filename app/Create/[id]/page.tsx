@@ -3,8 +3,10 @@ import React from "react";
 type Props = {
   params: Promise<{ id: string }>;
 };
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 const getData = async (id: string) => {
-  const res = await fetch("http://localhost:3000/blog/" + id);
+  const res = await fetch("" + apiUrl + "/blog/" + id);
   const data = await res.json();
   return data;
 };

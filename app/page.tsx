@@ -1,13 +1,15 @@
 import Link from "next/link";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+console.log(apiUrl);
+
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/blog");
+  const res = await fetch("" + apiUrl + "/blog");
   const data = res.json();
   return data;
 };
 export default async function Home() {
   const Articles = await getData();
-
 
   return (
     <div className="w-full bg-slate-300 h-2/3 ">
@@ -15,7 +17,7 @@ export default async function Home() {
         {Articles.map(
           (article: { id: number; title: string; auteur: string }) => (
             <Link
-              href={"/Create/" + article.id}
+              href={"" + apiUrl + "/Create/" + article.id}
               key={article.id}
               className="rounded-lg flex flex-col gap-2  bg-slate-200 shadow-lg  p-8 text-center hover:bg-slate-300"
             >
