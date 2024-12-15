@@ -4,8 +4,8 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 console.log(apiUrl);
 
 const getData = async () => {
-  const res = await fetch("" + apiUrl + "/blog");
-  const data = res.json();
+  const res = await fetch(apiUrl + "/blog");
+  const data = await res.json();
   return data;
 };
 export default async function Home() {
