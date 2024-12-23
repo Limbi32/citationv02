@@ -34,7 +34,7 @@ export default function Contenu() {
       {data !== null &&
         data.map((article: { id: number; title: string; auteur: string }) => (
           <Link
-            href={"http://localhost:3000/Create/" + article.id}
+            href={"http://https://citationv02.vercel.app/Create/" + article.id}
             key={article.id}
             className="rounded-2xl flex flex-col gap-2 
              bg-slate-200 shadow-lg  p-8 text-center
