@@ -14,16 +14,20 @@ export function Contenu1({ id }: { id: string }) {
   const { data, error, loading } = useFetch<Post>("" + apiUrl + id);
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="bg-slate-300 text-center p-8 font-bold text-2xl">
+        Loading
+      </div>
+    );
   }
   if (error) {
     return <div>{error}</div>;
   }
 
   return (
-    <div className="p-8 text-center">
-      <div>{data && data.title}</div>
-      <div className="text-right">{data && data.auteur}</div>
+    <div className="bg-slate-300 p-8 text-center rounded-3xl">
+      <div className="">{data && data.title}</div>
+      <div className="text-right font-bold">{data && data.auteur}</div>
     </div>
   );
 }

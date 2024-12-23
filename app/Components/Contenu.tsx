@@ -15,8 +15,19 @@ export default function Contenu() {
   const { data, error, loading } = useFetch<Post[]>("" + apiUrl);
   console.log(data);
 
-  if (loading) return <div> loading</div>;
-  if (error) return <div> {error} </div>;
+  if (loading)
+    return (
+      <div className="bg-slate-300 text-center m-5 font-bold text-2xl">
+        loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="bg-red-300 text-center p-8   font-bold text-2xl">
+        {" "}
+        {error}{" "}
+      </div>
+    );
 
   return (
     <div className="flex  flex-col justify-between gap-2 p-6">
@@ -25,10 +36,14 @@ export default function Contenu() {
           <Link
             href={"http://localhost:3000/Create/" + article.id}
             key={article.id}
-            className="rounded-lg flex flex-col gap-2  bg-slate-200 shadow-lg  p-8 text-center hover:bg-slate-300"
+            className="rounded-2xl flex flex-col gap-2 
+             bg-slate-200 shadow-lg  p-8 text-center
+              hover:bg-slate-300"
           >
             <p> {article.title} </p>
-            <p className="text-right pr-3 text-zinc-800">{article.auteur}</p>
+            <p className="text-right pr-3 text-zinc-800 font-bold">
+              {article.auteur}
+            </p>
           </Link>
         ))}
     </div>

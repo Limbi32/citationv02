@@ -17,7 +17,7 @@ export default function Ajouter() {
       title,
       auteur,
     };
-    await fetch("" + apiUrl + "/blog", {
+    await fetch("" + apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

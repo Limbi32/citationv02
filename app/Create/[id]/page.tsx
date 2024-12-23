@@ -12,7 +12,7 @@ type Props = {
 // };
 export default async function page({ params }: Props) {
   return (
-    <div className="bg-slate-200 m-8">
+    <div className=" m-8">
       <Contenu1 id={(await params).id} />
     </div>
   );
