@@ -12,7 +12,7 @@ interface Post {
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function Contenu() {
   // Utilisation du hook useFetch pour récupérer des données
-  const { data, error, loading } = useFetch<Post[]>("" + apiUrl);
+  const { data, error, loading } = useFetch<Post[]>("" + apiUrl+"/blog");
   console.log(data);
 
   if (loading)
@@ -34,7 +34,7 @@ export default function Contenu() {
       {data !== null &&
         data.map((article: { id: number; title: string; auteur: string }) => (
           <Link
-            href={apiUrl + "/Create/" + article.id}
+            href={"" + apiUrl + "/Create/" + article.id}
             key={article.id}
             className="rounded-2xl flex flex-col gap-2 
              bg-slate-200 shadow-lg  p-8 text-center

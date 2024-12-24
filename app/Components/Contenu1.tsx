@@ -11,7 +11,7 @@ type Post = {
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export function Contenu1({ id }: { id: string }) {
-  const { data, error, loading } = useFetch<Post>("" + apiUrl + id);
+  const { data, error, loading } = useFetch<Post>("" + apiUrl +"/blog/"+ id);
 
   if (loading) {
     return (
