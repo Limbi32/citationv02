@@ -37,7 +37,7 @@ export default function Contenu() {
             href={"" + apiUrl + "/Create/" + article.id}
             key={article.id}
             className="rounded-2xl flex flex-col gap-2 
-             bg-slate-200 shadow-lg  p-8 text-center
+             bg-slate-200 shadow-lg  p-8 text-center text-zinc-800
               hover:bg-slate-300"
           >
             <p> {article.title} </p>
