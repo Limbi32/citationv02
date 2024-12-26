@@ -1,6 +1,7 @@
 "use client";
 
 import useFetch from "../Hooks/useFetch";
+import Loader from "./loader";
 
 // Définir un type pour les données que vous attendez de l'API
 type Post = {
@@ -16,7 +17,7 @@ export function Contenu1({ id }: { id: string }) {
   if (loading) {
     return (
       <div className="bg-slate-300 text-center p-8 font-bold text-2xl">
-        Loading
+        <Loader />
       </div>
     );
   }

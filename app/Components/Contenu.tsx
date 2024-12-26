@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import useFetch from "../Hooks/useFetch";
+import Loader from "./loader";
 
 // Définir un type pour les données que vous attendez de l'API
 interface Post {
@@ -18,7 +19,7 @@ export default function Contenu() {
   if (loading)
     return (
       <div className="bg-slate-300 text-center m-5 font-bold text-2xl">
-        loading...
+        <Loader />
       </div>
     );
   if (error)
