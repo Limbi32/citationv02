@@ -72,7 +72,7 @@ export default function Contenu() {
               {article.auteur}
             </p>
           </div>
-           <button className="bg-slate-400 p-6 rounded-lg" onClick={() =>onDelete(article.id)}  >X</button>
+           <button className="bg-slate-400 p-3 rounded-lg" onClick={() =>onDelete(article.id)}  >X</button>
          </div>
         ))}
     </div>

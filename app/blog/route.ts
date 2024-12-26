@@ -22,6 +22,10 @@ export async function POST(request: Request) {
   try {
     const { title, auteur } = await request.json();
 
+    if (!title || typeof title !=="string") {
+      return NextResponse.json({error:"citation n'est pas un texte"},{status:201})
+    }
+
     //creation d'un nouvelle citation
 
     const newCitation = await prisma.employes.create({
