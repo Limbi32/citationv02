@@ -21,3 +21,23 @@ export async function GET(
     );
   }
 }
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const deletedEmploye = await prisma.employes.delete({
+      where: {
+        id: parseInt((await params).id),
+      },
+    });
+    return NextResponse.json(deletedEmploye, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Failed to delete employé" },
+      { status: 500 }
+    );
+  }
+}

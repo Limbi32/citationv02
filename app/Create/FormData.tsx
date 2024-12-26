@@ -12,19 +12,26 @@ export default function Ajouter() {
     e.preventDefault();
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     // Préparer les données à envoyer
-    const articleData = {
-      id: 1,
-      title,
-      auteur,
-    };
-    await fetch("" + apiUrl+"/blog", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(articleData),
-    });
-    router.push("/");
+    
+    if (!title || !auteur) {
+      alert("Veuillez remplir tous les champs.");
+     
+    }else{
+      const articleData = {
+        id: 1,
+        title,
+        auteur,
+      };
+      await fetch("" + apiUrl+"/blog", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(articleData),
+      });
+      router.push("/");
+    }
+   
   };
   return (
     <div className="bg-slate-200 h-4/5 flex justify-center mt-4 pt-3">
@@ -38,6 +45,7 @@ export default function Ajouter() {
             type="text"
             name="titre"
             id="titre"
+            required={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="m-4 w-4/5 flex justify-center"
@@ -50,6 +58,7 @@ export default function Ajouter() {
             type="text"
             name="auteur"
             id="auteur"
+            required={true}
             value={auteur}
             onChange={(e) => setAuteur(e.target.value)}
             className="m-4 w-4/5"
