@@ -48,7 +48,7 @@ export default function Ajouter() {
             required={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="m-4 w-4/5 flex justify-center"
+            className="m-4 w-4/5 flex justify-center h-full"
           />
         </div>
 

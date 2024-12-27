@@ -2,6 +2,7 @@
 import Link from "next/link";
 import useFetch from "../Hooks/useFetch";
 import Loader from "./loader";
+import { MdDelete } from "react-icons/md";
 
 // Définir un type pour les données que vous attendez de l'API
 interface Post {
@@ -72,7 +73,7 @@ export default function Contenu() {
               {article.auteur}
             </p>
           </div>
-           <button className="bg-slate-400 p-3 rounded-lg" onClick={() =>onDelete(article.id)}  >X</button>
+           <button className=" rounded-lg" onClick={() =>onDelete(article.id)}  ><MdDelete /></button>
          </div>
         ))}
     </div>
