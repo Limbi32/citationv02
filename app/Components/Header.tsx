@@ -23,9 +23,7 @@ export default function Header() {
       >
         Creer Une Citation
       </button>
-      <button className="bg-slate-900 p-2 rounded-md  hover:bg-slate-600"  onClick={handlelogin}>  
-        Inscription
-      </button>
+     
       <button className="bg-slate-900 p-2 rounded-md  hover:bg-slate-600"  onClick={handlelogin}>  
         Login
       </button>

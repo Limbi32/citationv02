@@ -55,13 +55,13 @@ export default function Contenu() {
     <div className="flex  flex-col justify-between gap-2 p-6">
       {data !== null &&
         data.map((article: { id: number; title: string; auteur: string }) => (
-         <div className="rounded-2xl flex justify-between gap-5 
+         <div key={article.id} className="rounded-2xl flex justify-between gap-5 
          bg-slate-200 shadow-lg  p-8 text-center text-zinc-800
           hover:bg-slate-300">
           <div className="flex  flex-col justify-between w-4/5">
           <Link className="text-center"
             href={"" + apiUrl + "/Create/" + article.id}
-            key={article.id}
+            
            
           >
            <div> <p> {article.title} </p>
