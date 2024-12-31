@@ -73,7 +73,9 @@ export default function Contenu() {
               {article.auteur}
             </p>
           </div>
-           <button className=" rounded-lg" onClick={() =>onDelete(article.id)}  ><MdDelete /></button>
+           <button className=" rounded-lg" onClick={() =>onDelete(article.id)}  ><MdDelete style={{fontSize:"25px"}}/></button>
+           <button className=" rounded-lg" onClick={() =>{}}  ><MdDelete style={{fontSize:"25px"}}/></button>
+           <button className=" rounded-lg" onClick={() =>{}}  ><MdDelete style={{fontSize:"25px"}}/></button>
          </div>
         ))}
     </div>

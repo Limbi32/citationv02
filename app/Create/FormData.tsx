@@ -14,9 +14,26 @@ export default function Ajouter() {
     // Préparer les données à envoyer
     
     if (!title || !auteur) {
+
       alert("Veuillez remplir tous les champs.");
      
     }else{
+      const hasTwoWords = (str: string) => {
+        return str.trim().split(/\s+/).length >= 2;
+      };
+
+      // if (!hasTwoWords(title)) {
+      //   alert("Le titre doit contenir au moins deux mots.");
+      //   return;
+      // }
+  const isSentence = (str: string) => {
+    return /^[A-Z].*[.!?]$/.test(str);
+  };
+
+  if (!isSentence(title) && !hasTwoWords(title)) {
+    alert("Le titre doit être une phrase commençant par une majuscule et se terminant par un point, un point d'exclamation ou un point d'interrogation.");
+    return;
+  }else{
       const articleData = {
         id: 1,
         title,
@@ -31,15 +48,16 @@ export default function Ajouter() {
       });
       router.push("/");
     }
+  }
    
   };
   return (
-    <div className="bg-slate-200 h-4/5 flex justify-center mt-4 pt-3">
+    <div className="bg-slate-200 h-4/5 w-1/2 flex justify-center items-center pt-3 ">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col  justify-between gap-3  w-3/4"
+        className="flex flex-col  justify-between gap-3  w-full pr-12"
       >
-        <div className="flex flex-col gap-2  justify-center  w-full h-10 m-4">
+        <div className="flex flex-col gap-2  justify-center  w-full h-30 m-4">
           <label htmlFor="titre">Citation</label>
           <input
             type="text"
@@ -48,7 +66,7 @@ export default function Ajouter() {
             required={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="m-4 w-4/5 flex justify-center h-full"
+            className="m-4 w-full flex justify-center h-full"
           />
         </div>
 
@@ -61,14 +79,14 @@ export default function Ajouter() {
             required={true}
             value={auteur}
             onChange={(e) => setAuteur(e.target.value)}
-            className="m-4 w-4/5"
+            className="m-4  w-full"
           />
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-center w-full">
           <button
             type="submit"
-            className="btn m-4 bg-slate-700 p-3 rounded-2xl text-slate-50  hover:bg-slate-600"
+            className="btn m-4 w-full bg-slate-700 p-3 rounded-2xl text-slate-50 shadow-xl  hover:bg-slate-600"
           >
             Ajouter une citation
           </button>
