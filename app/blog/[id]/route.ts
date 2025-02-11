@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const employes = await prisma.employes.findFirst({
+    const employes = await prisma.post.findFirst({
       where: {
         id: parseInt((await params).id),
       },
@@ -27,7 +27,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const deletedEmploye = await prisma.employes.delete({
+    const deletedEmploye = await prisma.post.delete({
       where: {
         id: parseInt((await params).id),
       },
@@ -37,6 +37,28 @@ export async function DELETE(
     console.log(error);
     return NextResponse.json(
       { error: "Failed to delete employé" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { data } = await request.json();
+
+    const updateemploye = await prisma.post.update({
+      where: { id: parseInt((await params).id) },
+      data,
+    });
+
+    return NextResponse.json(updateemploye, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "failed to update citation" },
       { status: 500 }
     );
   }

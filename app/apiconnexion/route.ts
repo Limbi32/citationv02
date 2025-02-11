@@ -1,45 +1,27 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcryptjs';
-
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Method not allowed' });
-    }
+export  async function POST(req:Request){
 
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(400).json({ message: 'Email and password are required' });
-    }
-
-    try {
-        const user = await prisma.user.findUnique({
-            where: { email },
-        });
-
-        if (!user) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+    const { email, password } = await req.json();
+   
+    const user= await prisma.user.findUnique({
+        where:{
+            email:email
         }
+    })
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-
-        if (!isPasswordValid) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+    if(user&& await bcrypt.compare(password,user.password)){
+        if (!process.env.NEXT_PUBLIC_JWT_SECRET) {
+            throw new Error("JWT_SECRET is not defined");
         }
-
-        // Authentication successful
-        return res.status(200).json({ message: 'Authentication successful', user });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Internal server error' });
+        const token = jwt.sign({ id: user.id, email: user.email }, process.env.NEXT_PUBLIC_JWT_SECRET, { expiresIn: '24h' });
+        return NextResponse.json({ token }, { status: 200 });
+    }else{
+        return NextResponse.json({error:"email ou mot de passe incorrect"}, { status: 405 })
     }
 }
-
-
-
-
-

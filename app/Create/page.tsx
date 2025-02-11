@@ -1,10 +1,10 @@
+"use client";
 import React from "react";
 import FormData from "./FormData";
 
 function page() {
   return (
-    <div>
-      <h1>Creer une citation</h1>
+    <div className="flex justify-center w-full mt-5">
       <FormData />
     </div>
   );
