@@ -1,12 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Header1 from "../Header/Header";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const [token, setToken] = useState<string | null>(null);
 
   const handleinscrit = () => {
     router.push("/Inscription");
@@ -39,8 +41,14 @@ export default function Login() {
     }
   };
 
+  useEffect(() => {
+    const token1: string | null = localStorage.getItem("token");
+    setToken(token1);
+  }, []);
   return (
     <div>
+      <Header1 token={token} />
+
       <div className="flex flex-col  items-center gap-8 text-2xls w-full">
         <h1 className="bg-zinc-200 text-2xl text-zinc-600">
           Connexion/Inscription

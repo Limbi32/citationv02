@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export async function GET() {
   try {
-    const employes = await prisma.employes.findMany();
+    const employes = await prisma.post.findMany();
     return NextResponse.json(employes, { status: 200 });
   } catch (error) {
     console.log(error);
@@ -20,16 +20,19 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { title, auteur } = await request.json();
+    const { title, auteur, user,themes } = await request.json();
 
-    if (!title || typeof title !=="string") {
-      return NextResponse.json({error:"citation n'est pas un texte"},{status:201})
+    if (!title || typeof title !== "string") {
+      return NextResponse.json(
+        { error: "citation n'est pas un texte" },
+        { status: 201 }
+      );
     }
 
     //creation d'un nouvelle citation
 
-    const newCitation = await prisma.employes.create({
-      data: { title, auteur },
+    const newCitation = await prisma.post.create({
+      data: { title, auteur, user, themes },
     });
     return NextResponse.json(newCitation, { status: 201 });
   } catch (error) {
@@ -40,4 +43,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

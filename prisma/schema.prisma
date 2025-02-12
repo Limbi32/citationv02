@@ -14,8 +14,27 @@ datasource db {
   directUrl=env("DIRECT_URL")
 }
 
-model employes {
+model Post {
   id Int @id @default(autoincrement())
   title String
   auteur String
+  user String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  themes String
+  likes     LikeDislike[]
+}
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+model LikeDislike {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  isLiked   Boolean
+  post      Post     @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
 }

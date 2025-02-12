@@ -1,4 +1,4 @@
-import Contenu from "./Components/Contenu";
+import { Corpscont } from "./Components/Corpscont";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 console.log(apiUrl);
@@ -8,10 +8,11 @@ console.log(apiUrl);
 //   const data = await res.json();
 //   return data;
 // };
+
 export default async function Home() {
   return (
     <div className="w-full bg-slate-300 h-2/3 ">
-      <Contenu />
+      <Corpscont />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
+import Header1 from "../Components/Header/Header";
 
 export default function Ajouter() {
   const [user, setUser] = useState<{
@@ -26,15 +27,7 @@ export default function Ajouter() {
     password: string;
     exp: number;
   } | null>(null);
-  // Vérifier si le token est valide en vérifiant son expiration
-  // const decoded = token
-  //   ? (jwt.decode(token) as {
-  //       id: string;
-  //       email: string;
-  //       password: string;
-  //       exp: number;
-  //     })
-  //   : null;
+
   useEffect(() => {
     const token1: string | null = localStorage.getItem("token");
     setToken(token1);
@@ -135,7 +128,9 @@ export default function Ajouter() {
     }
   };
   return (
-    <div className="bg-zinc-200 h-4/5 w-full -m-8 flex justify-center items-center pt-3 ">
+    <div className="bg-zinc-200  ">
+      <Header1 token={token} />
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col bg-zinc-300 shadow-lg m-5 rounded-lg justify-between gap-3 p-10 w-4/5 pr-12"
