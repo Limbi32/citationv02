@@ -4,7 +4,7 @@ import FormData from "./FormData";
 
 function page() {
   return (
-    <div className="flex justify-center w-full mt-5">
+    <div className="">
       <FormData />
     </div>
   );
