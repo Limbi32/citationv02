@@ -1,8 +1,7 @@
-"use client";
 import React from "react";
 import FormData from "./FormData";
 
-function page() {
+export async function page() {
   return (
     <div className="">
       <FormData />

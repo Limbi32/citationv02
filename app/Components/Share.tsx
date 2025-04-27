@@ -29,7 +29,7 @@ export function Share({
   };
   return (
     <Tooltip text="Partager">
-      <button className=" rounded-lg p-2 focus:ring-2" onClick={handleShare}>
+      <button className=" hover:text-violet-600 dark:hover:text-violet-400" onClick={handleShare}>
         <FaShareAlt style={{ fontSize: "15px" }} />
       </button>
     </Tooltip>

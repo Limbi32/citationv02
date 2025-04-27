@@ -1,13 +1,7 @@
 import { Corpscont } from "./Components/Corpscont";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-console.log(apiUrl);
-
-// const getData = async () => {
-//   const res = await fetch(apiUrl + "/blog");
-//   const data = await res.json();
-//   return data;
-// };
+// console.log(apiUrl);
 
 export default async function Home() {
   return (

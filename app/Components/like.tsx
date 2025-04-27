@@ -45,7 +45,9 @@ export function Like({
     <Tooltip text="j'aime">
       <button
         className={`rounded-lg p-2  ${
-          islike ? "text-blue-500" : "text-zinc-500"
+          islike
+            ? "hover:text-violet-600 dark:hover:text-violet-400"
+            : "text-zinc-500"
         }`}
         onClick={HandleLike}
       >

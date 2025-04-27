@@ -14,7 +14,7 @@ export default function Ajouter() {
   } | null>(null);
   const [isTokenValid, setIsTokenValid] = useState<boolean | null>(null);
   const router = useRouter();
-  console.log(user);
+
   const [title, setTitle] = useState("");
   const [auteur, setAuteur] = useState("");
   const [themes, setThemes] = useState("");
@@ -48,16 +48,14 @@ export default function Ajouter() {
 
         if (decoded) {
           setUser(decoded);
-          console.log("decoded " + decoded);
         }
         if (decoded) {
           // Vérifier si le token est expiré
           const isExpired = Date.now() / 1000 > decoded.exp;
 
           if (isExpired) {
-            console.log(isTokenValid);
             setIsTokenValid(false);
-            console.log("Token is expired");
+
             router.push("/Login");
           } else {
             setIsTokenValid(true);
@@ -66,7 +64,6 @@ export default function Ajouter() {
           }
         } else {
           setIsTokenValid(false);
-          console.log("Invalid token");
         }
       } catch (error) {
         // Vérifier si error est un objet et contient une propriété "message"
