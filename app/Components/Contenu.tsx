@@ -55,20 +55,16 @@ export default function Contenu({ token }: { token: string | null }) {
   const { data, error, loading } = useFetch<Post[]>(apiUrl + "/blog");
 
   useEffect(() => {
-    console.log("render");
-
     if (decoded) {
       // Vérifier si le token est
-      console.log("decode " + decoded);
+
       const isExpired = Date.now() / 1000 > decoded.exp;
       if (isExpired) {
         setModals(true);
-        console.log("Token is expired " + ismodals);
       } else {
         setUser(decoded);
         const fetchData = async () => {
-          if (user) {
-            console.log("user like " + user.email);
+          if (user && data) {
             const response = await fetch("/querylikes", {
               method: "POST",
               headers: {
@@ -77,7 +73,6 @@ export default function Contenu({ token }: { token: string | null }) {
               body: JSON.stringify({ param1: user.email, param2: user.id }),
             });
             const data: { isLiked: boolean } = await response.json();
-            console.log("data 1 " + data.isLiked);
             setIslike(data.isLiked);
           } else {
             setModals(true);
@@ -86,7 +81,7 @@ export default function Contenu({ token }: { token: string | null }) {
         fetchData();
       }
     }
-  }, [user, ismodals, decoded]);
+  }, [user, ismodals, decoded, data]);
 
   // Fonction qui copie le texte dans le presse-papier
   const copierDansPressePapier = async (valeur: string) => {
@@ -170,7 +165,7 @@ export default function Contenu({ token }: { token: string | null }) {
   //Si les données  ne sont pas prets affiche le loader
   if (loading)
     return (
-      <div className="bg-slate-300 text-center m-5 font-bold text-2xl">
+      <div className="bg-gray-300 text-center m-5 font-bold text-2xl">
         <Loader />
       </div>
     );
@@ -178,13 +173,25 @@ export default function Contenu({ token }: { token: string | null }) {
   //s'il y a une erreur
   if (error)
     return (
-      <div className="bg-red-300 text-center p-8   font-bold text-2xl">
-        Erreur de chargement de données
-      </div>
+      <main className=" bg-gray-800 h-screen flex-1 flex flex-col items-center justify-center p-6">
+        {/* Message d'erreur si besoin */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="bg-red-500 text-white font-medium py-2 px-6 rounded-lg shadow-md">
+            Erreur de chargement de données
+          </div>
+
+          <button
+            onClick={() => location.reload()} // ou ta propre fonction de retry
+            className="bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-all duration-300 text-white font-semibold py-2 px-5 rounded-xl shadow-md hover:shadow-lg"
+          >
+            Réessayer
+          </button>
+        </div>
+      </main>
     );
 
   return (
-    <div className="flex  flex-col h-screen gap-5 p-6">
+    <main className="flex-1 flex flex-col items-center justify-center p-6">
       <Modal Open={ismodals} onClose={() => setModals(false)}>
         <div className="bg-zinc-200 p-10 rounded-xl gap-4 text-center text-zinc-500 flex flex-col justify-between items-center  w-full">
           <p>
@@ -199,7 +206,7 @@ export default function Contenu({ token }: { token: string | null }) {
         </div>
       </Modal>
 
-      {data !== null &&
+      {data &&
         data.map(
           (article: {
             id: number;
@@ -211,21 +218,22 @@ export default function Contenu({ token }: { token: string | null }) {
           }) => (
             <div
               key={article.id}
-              className="rounded-2xl flex  flex-col justify-between gap-5 
-         bg-slate-200 shadow-lg  p-2 pt-8 px-8 text-center text-zinc-800
-          hover:bg-slate-300 "
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto "
             >
-              <div className="flex  flex-col justify-center gap-5 w-full">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition-transform hover:scale-105">
                 <Link
                   className="text-center"
                   href={"" + apiUrl + "/Create/" + article.id}
                 >
                   <div className="flex justify-center items-center">
                     {" "}
-                    <p className="italic"> {article.title} clear</p>
+                    <p className="text-xl italic font-light text-center">
+                      {" "}
+                      {article.title}{" "}
+                    </p>
                   </div>
                 </Link>
-                <p className="text-right pr-3 text-zinc-800 font-bold focus:ring-2">
+                <p className=" text-right font-semibold mt-4">
                   {article.auteur}
                 </p>
               </div>
@@ -282,6 +290,6 @@ export default function Contenu({ token }: { token: string | null }) {
             </div>
           )
         )}
-    </div>
+    </main>
   );
 }

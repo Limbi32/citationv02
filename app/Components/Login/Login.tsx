@@ -10,10 +10,6 @@ export default function Login() {
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
 
-  const handleinscrit = () => {
-    router.push("/Inscription");
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -49,7 +45,7 @@ export default function Login() {
     <div>
       <Header1 token={token} />
 
-      <div className="flex flex-col  items-center gap-8 text-2xls w-full">
+      {/* <div className="flex flex-col  items-center gap-8 text-2xls w-full">
         <h1 className="bg-zinc-200 text-2xl text-zinc-600">
           Connexion/Inscription
         </h1>
@@ -103,6 +99,53 @@ export default function Login() {
               Inscription
             </button>
           </div>
+        </div>
+      </div> */}
+
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+        <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 space-y-6">
+          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
+            Connexion 🔐
+          </h2>
+
+          <form
+            className="flex flex-col space-y-4"
+            onSubmit={handleSubmit}
+            method="POST"
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
+            />
+
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
+            />
+
+            <button
+              type="submit"
+              className="bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-transform duration-300 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg"
+            >
+              Se connecter
+            </button>
+          </form>
+
+          <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
+            Pas encore de compte ?
+            <a
+              href="/Inscription"
+              className="text-indigo-600 hover:underline ml-1"
+            >
+              Créer un compte
+            </a>
+          </p>
         </div>
       </div>
     </div>

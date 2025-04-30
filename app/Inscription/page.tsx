@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-// import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 // const prisma = new PrismaClient();
@@ -28,31 +28,36 @@ const Inscription = () => {
   };
 
   return (
-    <div className="flex  flex-col  w-full  items-center h-screen bg-zinc-300">
-      <div className="flex flex-col items-center gap-5">
-        <h1 className="text-bold m-4">Inscription</h1>
-        <form className="flex flex-col gap-7" onSubmit={handleSubmit}>
-          <div className="flex justify-around gap-2">
-            <label className="w-1/4">Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="flex justify-around  gap-2">
-            <label className="w-1/4">Mot de passe:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+      <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 space-y-6">
+        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
+          Inscription 🔐
+        </h2>
+
+        <form
+          className="flex flex-col space-y-4"
+          onSubmit={handleSubmit}
+          method="POST"
+        >
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
+          />
+
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
+          />
+
           <button
-            className="bg-zinc-600 p-2 text-zinc-100 font-bold rounded-lg hover:bg-zinc-700"
             type="submit"
+            className="bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-transform duration-300 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg"
           >
             S inscrire
           </button>

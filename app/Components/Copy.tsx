@@ -15,7 +15,7 @@ export function Copy({
   return (
     <Tooltip text="Copier">
       <button
-        className=" rounded-lg p-2 focus:ring-2"
+        className=" hover:text-violet-600 dark:hover:text-violet-400"
         onClick={copierDansPressePapier}
       >
         {iscopy ? <FaRegCopy /> : <FaCopy />}

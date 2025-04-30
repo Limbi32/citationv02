@@ -31,7 +31,7 @@ export default function Ajouter() {
   useEffect(() => {
     const token1: string | null = localStorage.getItem("token");
     setToken(token1);
-
+    console.log(user);
     if (token) {
       setDecoded(
         jwt.decode(token) as unknown as {
@@ -80,7 +80,7 @@ export default function Ajouter() {
     } else {
       router.push("/Login");
     }
-  }, [decoded, isTokenValid, router, token]);
+  }, [decoded, isTokenValid, router, token, user]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,6 +88,7 @@ export default function Ajouter() {
     // Préparer les données à envoyer
 
     if (!title || !auteur || !themes) {
+      console.log(verifiTitle);
       // alert("Veuillez remplir tous les champs.");
       setVerifiTitle("Veuillez remplir tous les champs.");
     } else {
@@ -125,69 +126,47 @@ export default function Ajouter() {
     }
   };
   return (
-    <div className="bg-zinc-200  ">
+    <div className="  ">
       <Header1 token={token} />
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col bg-zinc-300 shadow-lg m-5 rounded-lg justify-between gap-3 p-10 w-4/5 pr-12"
-      >
-        <div className="flex flex-col gap-2  justify-center  w-full h-30 m-4">
-          <label htmlFor="titre">Citation</label>
+      <div className="max-w-2xl mx-auto mt-10 p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg space-y-6">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center">
+          Ajouter une Citation ✍️
+        </h2>
 
-          <div>
-            <textarea
-              name="titre"
-              id="titre"
-              placeholder="Ecrivez votre citation"
-              required={false}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              cols={10}
-              rows={5}
-              className="w-full"
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2  justify-center w-full h-10 m-4 ">
-          <label htmlFor="auteur">Auteur</label>
+        <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
           <input
             type="text"
-            name="auteur"
-            id="auteur"
-            placeholder="Ex: Albert Enstein"
-            required={false}
+            placeholder="Auteur"
             value={auteur}
             onChange={(e) => setAuteur(e.target.value)}
-            className="m-4  w-full"
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
           />
-        </div>
 
-        <div className="flex flex-col gap-2  justify-center w-full h-10 m-4 ">
-          <label htmlFor="theme">Theme</label>
+          <textarea
+            placeholder="Votre citation inspirante..."
+            rows={4}
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition resize-none"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
           <input
             type="text"
-            name="theme"
-            id="theme"
-            placeholder="Ex: Amour"
-            required={false}
+            placeholder="Theme"
             value={themes}
             onChange={(e) => setThemes(e.target.value)}
-            className="m-4  w-full"
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
           />
-        </div>
-        <div className="text-center my-5 text-red-500">{verifiTitle}</div>
 
-        <div className="flex justify-center w-full">
           <button
             type="submit"
-            className="btn m-4 w-full flex justify-center bg-slate-700 p-3 rounded-2xl text-zinc-50 shadow-xl  hover:bg-slate-600"
+            className="bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-transform duration-300 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg"
           >
-            Ajouter une citation
+            Ajouter
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
