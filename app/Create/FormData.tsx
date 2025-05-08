@@ -140,7 +140,7 @@ export default function Ajouter() {
             placeholder="Auteur"
             value={auteur}
             onChange={(e) => setAuteur(e.target.value)}
-            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition"
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-500 transition"
           />
 
           <textarea

@@ -5,7 +5,7 @@ import { Corpscont } from "./Components/Corpscont";
 
 export default async function Home() {
   return (
-    <div className="in-h-screen bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 flex flex-col ">
+    <div className="in-h-screen bg-gradient-to-b from-gray-800 via-gray-300 to-gray-400 flex flex-col ">
       <Corpscont />
     </div>
   );
