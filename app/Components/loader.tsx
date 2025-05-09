@@ -1,9 +1,10 @@
 // components/Loader.js
 export default function Loader() {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-  
+  return (
+    <div className="bg-gray-700 flex items-center justify-center h-screen space-x-2">
+      <span className="w-4 h-4 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+      <span className="w-4 h-4 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+      <span className="w-4 h-4 bg-indigo-500 rounded-full animate-bounce"></span>
+    </div>
+  );
+}

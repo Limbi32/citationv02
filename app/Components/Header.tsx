@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { MdCreateNewFolder } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
-import { PiSignInLight } from "react-icons/pi";
 import { IoLogIn } from "react-icons/io5";
 import jwt from "jsonwebtoken";
 
@@ -53,34 +52,41 @@ export default function Header({ handleshow, token }: HeaderProps) {
             setIsopen(false);
           }
         } else {
-          console.log("Invalid token");
-          alert("Invalid token");
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      console.log("token don't exist ");
+      setVisible(false);
+      setIsopen(true);
     }
   }, [token, decoded]);
 
   const handlesend = () => {
+    console.log("/creer");
+
     router.push("/Create");
-  };
-  const handleinscription = () => {
-    router.push("/Inscription");
   };
 
   const handlelogin = () => {
     router.push("/Login");
   };
 
+  // const [darkMode, setDarkMode] = useState(false);
+
+  // const toggleTheme = () => {
+  //   setDarkMode(!darkMode);
+  //   document.documentElement.classList.toggle("dark");
+  // };
+
   return (
-    <div className="bg-zinc-600 text-slate-300 flex justify-between p-6">
-      <h1 className="text-left text-fuchsia-50">Citation App</h1>
-      <div className="flex gap-5 ">
+    <div className=" bg-gray-900 shadow-lg p-5 flex justify-between items-center sticky top-0 z-50">
+      <h1 className="text-[clamp(1.5rem,4vw,3rem)] font-extrabold text-purple-400 tracking-wide">
+        📚 Citation App
+      </h1>
+      <div className="flex gap-3">
         <button
-          className="bg-zinc-500 p-2 flex flex-col items-center gap-2 rounded-xl shadow-2xl focus:ring-2 hover:bg-slate-600  text-sm"
+          className="bg-violet-600   text-sm  hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-xl transition-transform transform hover:scale-105 duration-300 shadow-md hover:shadow-lg"
           onClick={handlesend}
         >
           <MdCreateNewFolder style={{ fontSize: "15px" }} />
@@ -89,20 +95,8 @@ export default function Header({ handleshow, token }: HeaderProps) {
 
         <button
           className={` ${
-            isopen
-              ? "bg-zinc-500 p-2 rounded-xl flex flex-col  justify-center items-center shadow-2xl focus:ring-2 hover:bg-slate-600  text-sm"
-              : "hidden"
-          }`}
-          onClick={handleinscription}
-        >
-          <PiSignInLight style={{ fontSize: "25px" }} />
-          <div className="text-xs">Inscription</div>
-        </button>
-
-        <button
-          className={` ${
             visible
-              ? "bg-zinc-500 p-2 rounded-xl shadow-2xl focus:ring-2 hover:bg-slate-600  text-sm"
+              ? "bg-purple-600 hover:bg-purple-700 text-white py-2 px-5 rounded-lg transition duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.7)]"
               : "hidden"
           }`}
           onClick={handleshow}
@@ -113,7 +107,7 @@ export default function Header({ handleshow, token }: HeaderProps) {
         <button
           className={` ${
             isopen
-              ? "bg-zinc-500 p-2 rounded-xl flex flex-col  justify-center items-center shadow-2xl focus:ring-2 hover:bg-slate-600  text-sm"
+              ? "bg-gray-800 hover:bg-gray-900 text-white py-2 px-6 rounded-full transition-all duration-300 animate-pulse hover:animate-none"
               : "hidden"
           }`}
           onClick={handlelogin}
